@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import requests
 
+username = input("Enter a username: ")
 url = input("Enter webhook: ")
 
 def chat():
     output = input("Msg: ")
     data = {
         "content" : output,
-        "username" : "1337#0679"
+        "username" : username
     }
     try:
         result = requests.post(url, json = data)
