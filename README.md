@@ -10,7 +10,12 @@ A Python script that allows you to send messages to a Discord server via a webho
 ## Installation
 
 1. Clone the repository to your local machine.
-2. Install the requests package using pip
+2. Install the requests package using pip.
+
+```sh
+$ git clone https://gitlab.com/runningunix/discord-webhook-chat
+$ pip install requests
+```
 
 ## Usage
 
