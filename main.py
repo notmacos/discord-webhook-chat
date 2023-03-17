@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 import requests
 
-username = input("Enter a username: ")
+print("""List of commands:
+:delete Deletes the webhook
+:exit Exits the script""")
+      
+username = input("\nEnter a username: ")
 url = input("Enter webhook: ")
 
 def chat():
@@ -10,12 +14,24 @@ def chat():
         "content" : output,
         "username" : username
     }
-    try:
-        result = requests.post(url, json = data)
-        result.raise_for_status()
-    except Exception as e:
-        print(e)
-        pass
+
+    if output == ":exit":
+        exit()
+    elif output == ":delete":
+        try:
+            requests.delete(f"{url}")
+            print("Successful!")
+            exit()
+        except Exception as f:
+            print(f)
+
+    else:
+        try:
+            result = requests.post(url, json = data)
+            result.raise_for_status()
+        except Exception as e:
+            print(e)
+            pass
 
 while True:
     chat()
