@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 import requests
 
-print("""List of commands:
-:delete Deletes the webhook
-:exit Exits the script""")
-      
-# Requests inputs before starting
-username = input("\nEnter a username: ")
-avatarURL = input("Enter link to profile picture: ")
-url = input("Enter webhook: ")
+def main():
+    global commands, username, avatarURL, url
+
+    # Defining command list 
+    commands = str("\nList of commands:\n    :help Lists commands\n    :delete Deletes the webhook\n    :exit Exits the script\n")
+    print(commands)
+
+    # Requests inputs before starting
+    username = input("Enter a username: ")
+    avatarURL = input("Enter link to profile picture: ")
+    url = input("Enter webhook: ")
+    print("\n")
+
+    chat()
 
 
 def chat():
@@ -20,11 +26,13 @@ def chat():
     }
 
     # Verifying content
-    if content == ":exit":
+    if content == ":help":
+        print(commands)
+    elif content == ":exit":
         exit()
     elif content == ":delete":
         try:
-            requests.delete(f"{url}")
+            requests.delete(url)
             print("Successful!")
             exit()
         except Exception as f:
@@ -41,6 +49,8 @@ def chat():
             print(e)
             pass
 
-# Forever executes chat() until Keyboard Interrupt or :exit
-while True:
-    chat()
+    # Forever executes chat() until KeyboardInterrupt or :exit
+    while True:
+        chat()
+    
+main()
