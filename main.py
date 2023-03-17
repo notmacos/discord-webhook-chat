@@ -6,18 +6,21 @@ print("""List of commands:
 :exit Exits the script""")
       
 username = input("\nEnter a username: ")
+avatarURL = input("Enter link to profile picture: ")
 url = input("Enter webhook: ")
 
+
 def chat():
-    output = input("Msg: ")
+    content = input("% ")
     data = {
-        "content" : output,
-        "username" : username
+        "content" : content,
+        "username" : username,
+        "avatar_url" : avatarURL
     }
 
-    if output == ":exit":
+    if content == ":exit":
         exit()
-    elif output == ":delete":
+    elif content == ":delete":
         try:
             requests.delete(f"{url}")
             print("Successful!")
