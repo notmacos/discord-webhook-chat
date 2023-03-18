@@ -12,7 +12,7 @@ def main():
     username = input("Enter a username: ")
     avatarURL = input("Enter link to profile picture: ")
     url = input("Enter webhook: ")
-    print("\n")
+    print("")
 
     chat()
 
