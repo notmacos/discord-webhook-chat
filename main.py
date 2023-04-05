@@ -2,9 +2,10 @@
 import requests
 
 def main():
+    # Set global variables
     global commands, username, avatarURL, url
 
-    # Defining command list 
+    # Define list of commands 
     commands = str("\nList of commands:\n    :help Lists commands\n    :delete Deletes the webhook\n    :exit Exits the script\n")
     print(commands)
 
@@ -18,38 +19,43 @@ def main():
 
 
 def chat():
+    # Get user input
     content = input("% ")
+
+    # Create dictionary with input data
     data = {
         "content" : content,
         "username" : username,
         "avatar_url" : avatarURL
     }
 
-    # Verifying content
+    # Check if input is a command
     if content == ":help":
         print(commands)
     elif content == ":exit":
         exit()
     elif content == ":delete":
         try:
+            # Send delete request to webhook URL
             requests.delete(url)
             print("Successful!")
             exit()
         except Exception as f:
+            # Print error message if delete request fails
             print(f)
 
     else:
-        # Posts content to webhook
+        # Send post request with input data to webhook URL
         try:
             result = requests.post(url, json = data)
             result.raise_for_status()
             
-        # Prints error if post fails
+        # Print error message if post request fails
         except Exception as e:
             print(e)
             pass
 
-    # Forever executes chat() until KeyboardInterrupt or :exit
+    # Continuously execute chat() until KeyboardInterrupt or :exit
     while True:
         chat()
     
