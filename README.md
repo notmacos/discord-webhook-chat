@@ -13,7 +13,7 @@ A Python script that allows you to send messages to a Discord server via a webho
 2. Install the requests package using pip.
 
 ```sh
-$ git clone https://gitlab.com/runningunix/discord-webhook-chat
+$ git clone https://github.com/notmacos/discord-webhook-chat
 $ pip install requests
 ```
 
