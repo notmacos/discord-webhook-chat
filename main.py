@@ -60,3 +60,8 @@ def chat():
         chat()
     
 main()
+
+    while True:
+        chat()
+    
+main()
